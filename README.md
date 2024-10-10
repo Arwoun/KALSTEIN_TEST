@@ -13,7 +13,7 @@ Cette application de gestion de produits est développée en PHP pour la platefo
 6. [Endpoints de l'API](#endpoints-de-lapi)
 7. [Sécurité et Bonnes Pratiques](#sécurité-et-bonnes-pratiques)
 8. [Structure du Projet](#structure-du-projet)
-9. [Contribuer](#contribuer)
+
 
 ## Prérequis
 
