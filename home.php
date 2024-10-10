@@ -111,8 +111,6 @@
 <body>
 <div class="container">
     <h2>Gestion des Produits</h2>
-
-    <!-- Formulaire pour ajouter ou mettre à jour un produit -->
     <form id="productForm">
         <input type="hidden" id="productId">
         <label for="productName">Nom du produit:</label>
@@ -124,8 +122,6 @@
         <button type="submit">Enregistrer</button>
         <button type="reset" onclick="resetForm()">Annuler</button>
     </form>
-
-    <!-- Tableau pour afficher les produits -->
     <table id="productTable">
         <thead>
         <tr>
@@ -145,7 +141,6 @@
     const apiUrl = 'http://localhost:5000/api/produits';
     let currentEditIndex = -1;
 
-    // Charger les produits
     function loadProducts() {
         fetch(apiUrl)
             .then(response => response.json())
@@ -153,7 +148,6 @@
             .catch(error => console.error('Erreur lors du chargement:', error));
     }
 
-    // Mettre à jour le tableau des produits
     function updateProductTable(products) {
         const tableBody = document.getElementById('productTable').querySelector('tbody');
         tableBody.innerHTML = '';
@@ -172,14 +166,12 @@
         });
     }
 
-    // Ajouter ou mettre à jour un produit avec des validations côté client
     document.getElementById('productForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const name = document.getElementById('productName').value.trim();
         const price = parseFloat(document.getElementById('productPrice').value);
         const stock = parseInt(document.getElementById('productStock').value, 10);
 
-        // Validations côté client
         if (name === '') {
             alert("Le nom du produit ne doit pas être vide.");
             return;
@@ -196,7 +188,7 @@
         const product = { product_name_fr: name, product_peso_bruto: price, product_stock_units: stock };
 
         if (currentEditIndex === -1) {
-            // Ajouter un nouveau produit
+
             fetch(apiUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -215,7 +207,6 @@
                 })
                 .catch(error => console.error('Erreur lors de l\'ajout:', error));
         } else {
-            // Mettre à jour le produit existant
             fetch(`${apiUrl}/${currentEditIndex}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -237,7 +228,6 @@
         }
     });
 
-    // Modifier un produit
     function editProduct(id) {
         fetch(`${apiUrl}/${id}`)
             .then(response => response.json())
@@ -250,20 +240,17 @@
             .catch(error => console.error('Erreur lors de la récupération du produit:', error));
     }
 
-    // Supprimer un produit
     function deleteProduct(id) {
         fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
             .then(() => loadProducts())
             .catch(error => console.error('Erreur lors de la suppression:', error));
     }
 
-    // Réinitialiser le formulaire
     function resetForm() {
         document.getElementById('productForm').reset();
         currentEditIndex = -1;
     }
 
-    // Charger les produits au démarrage
     window.onload = loadProducts;
 </script>
 </body>
