@@ -149,6 +149,10 @@ Les tests vérifient les endpoints de l'API pour les opérations CRUD.
 
 ```plaintext
 KALSTEIN/
+├── CSS
+    └── style.css                           # Style page home.php
+├── JS
+    └── script.js                           # Script pour home.php
 ├── PYTHON
 │   └── flask_endpoints.py                  # Code de l'API Flask
 ├── home.php                # Interface utilisateur
