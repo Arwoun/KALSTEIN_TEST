@@ -47,6 +47,8 @@ Avant de commencer, assurez-vous que les éléments suivants sont installés sur
     pip install flask mysql-connector-python flask-cors
     ```
 
+    CORS qui va nottament nous permettre de communiquer entre l'api et les méthodes
+
 ## Configuration
 
 ### 1. Configuration de la base de données
@@ -56,17 +58,11 @@ Créez une base de données MySQL nommée `kalstein` :
 ```sql
 CREATE DATABASE kalstein;
 ```
+Créer une table qui se nomme `wp_k_products`
 
-Importez le fichier SQL pour créer la table `wp_k_products` :
+Importez le fichier SQL dans la table `wp_k_products` pour récuperer toutes les données
 
-```sql
-CREATE TABLE wp_k_products (
-    product_aid INT AUTO_INCREMENT PRIMARY KEY,
-    product_name_fr VARCHAR(255) NOT NULL,
-    product_peso_bruto DECIMAL(10, 2) NOT NULL,
-    product_stock_units INT NOT NULL
-);
-```
+
 
 ### 2. Configuration de l'API Flask
 
@@ -152,23 +148,16 @@ Les tests vérifient les endpoints de l'API pour les opérations CRUD.
 ## Structure du Projet
 
 ```plaintext
-KALSTEIN_TEST/
-├── app.py                  # Code de l'API Flask
-├── index.html              # Interface utilisateur
+KALSTEIN/
+├── PYTHON
+│   └── flask_endpoints.py                  # Code de l'API Flask
+├── home.php                # Interface utilisateur
 ├── README.md               # Documentation du projet
 ├── phpunit.xml             # Configuration PHPUnit
-├── tests/                  # Tests unitaires pour l'API
-│   └── ProductApiTest.php
+├── unit_test.php/          # Tests unitaires pour l'API
 ├── vendor/                 # Dépendances PHP installées
+├── main.php                # Connexion a la base de donnée
 └── .gitignore
 ```
 
-## Contribuer
-
-1. Forkez le projet.
-2. Créez une branche pour votre fonctionnalité (`git checkout -b nouvelle-fonctionnalité`).
-3. Commitez vos modifications (`git commit -am 'Ajout d'une nouvelle fonctionnalité'`).
-4. Poussez vers la branche (`git push origin nouvelle-fonctionnalité`).
-5. Créez une Pull Request.
-
-Pour toute question, n'hésitez pas à [ouvrir une issue](https://github.com/Arwoun/KALSTEIN_TEST/issues).
+(https://github.com/Arwoun/KALSTEIN_TEST/issues).
